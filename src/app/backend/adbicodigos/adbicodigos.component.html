@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-text><h5><strong>CODIGOS</strong></h5></ion-text>
+      <ion-buttons slot="start">
+          <ion-button (click)="openmenu()">
+              <ion-icon color="primary" slot="icon-only" name="menu-sharp"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row style="background: #e4e4e4;" *ngFor="let nuevos of codigos">
+      <ion-col size="12" size-md>
+          <ion-card>
+              <div style="margin: 20px   20px;">
+                  <ion-text class="ion-text-center"><h3><strong>
+                      {{nuevos.titulo}}
+                  </strong></h3></ion-text>
+              </div>
+              <div style="margin: 20px   20px;">
+                  <ion-text><h4>
+                      {{nuevos.caracte}}
+                  </h4></ion-text>
+              </div>
+              <div style="margin: 20px   20px;">
+                  <ion-text><h6>
+                      {{nuevos.contenido}}
+                  </h6></ion-text>
+              </div>
+              <ion-toolbar style="margin: 0px   5px;">
+                  <ion-text><h6><strong>
+                      <div style="margin: 5px;">
+                          <ion-icon name="calendar"></ion-icon>
+                          {{nuevos.fecha}} 
+                      </div> 
+                      <div style="margin: 5px;">
+                          <ion-icon name="time"></ion-icon>
+                          {{nuevos.hora}}
+                      </div>
+                  </strong></h6></ion-text>
+                  <ion-buttons>
+                      <ion-button (click)="nuevo = nuevos; enableNuevo = true" shape="round">
+                          <ion-icon slot="end" name="brush"></ion-icon>
+                      </ion-button>
+                      <ion-button (click)="deleteCodigos(nuevos)" shape="round">
+                          <ion-icon slot="end" color="danger" name="trash-bin"></ion-icon>
+                      </ion-button>
+                  </ion-buttons>
+              </ion-toolbar>
+          </ion-card>
+      </ion-col>
+  </ion-row>
+</ion-content>
+<div style="background: #c4c4c4;">
+    <ion-item>
+        <ion-buttons slot="end">
+            <ion-button color="danger" (click)="enableNuevo = false" shape="round">
+                <ion-icon name="close-circle"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="start">
+            <ion-button (click)="nueva(); enableNuevo = true" color="success" class="normal" shape="round">
+                Crear
+            </ion-button>
+        </ion-buttons>
+    </ion-item>
+    <div *ngIf="enableNuevo">
+        <ion-card>
+            <ion-item lines="none">
+                <ion-label position="floating">
+                    <strong>Titulo:</strong> 
+                </ion-label>
+                <ion-input [(ngModel)]="nuevo.titulo" type="text" imputmode="text">
+                </ion-input>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label position="floating">
+                    <strong>Codigo:</strong> 
+                </ion-label>
+              <ion-textarea [(ngModel)]="nuevo.contenido" enterkeyhint type="text" placeholder="Digite la pregunta">
+              </ion-textarea>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label position="floating">
+                    <strong>Caracteristicas:</strong> 
+                </ion-label>
+              <ion-textarea [(ngModel)]="nuevo.caracte" enterkeyhint type="text" placeholder="Digite la pregunta">
+              </ion-textarea>
+            </ion-item>
+            <ion-button (click)="createCodigo(); enableNuevo = false" color="primary" class="normal" shape="round">
+                <ion-icon name="save"></ion-icon>
+                Guardar
+            </ion-button>
+        </ion-card>
+    </div>
+</div>

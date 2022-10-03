@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Opciones</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="cerrar()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>
+        Digite los datos de la pregunta(* Datos Obligatorios)
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Opcion<ion-text color="danger">*</ion-text></ion-label>
+        <ion-textarea [(ngModel)]="opciones.text" type="text" placeholder="Digite la pregunta">
+          <ion-text><h6>
+          </h6></ion-text>
+        </ion-textarea>
+      </ion-item>
+      <ion-item>
+          <ion-label><strong>
+            Incorrecta 
+            <ion-toggle name="estado" [(ngModel)]="opciones.estado"></ion-toggle>
+            Correcta
+          </strong> </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-button (click)="Guardar()">
+    <ion-icon name="save"></ion-icon>
+    GUARDAR
+  </ion-button>
+</ion-content>
+

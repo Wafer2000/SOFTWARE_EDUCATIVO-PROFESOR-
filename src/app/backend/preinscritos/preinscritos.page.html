@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-text><h5><strong>PREINSCRITOS</strong></h5></ion-text>
+      <ion-buttons slot="start">
+          <ion-button (click)="openmenu()">
+              <ion-icon color="primary" slot="icon-only" name="menu-sharp"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-row>
+    <ion-col size="12" size-md>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="scan"></ion-icon> 
+            <strong>Calificar</strong>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          ---------------
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="12" size-md>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="reader-outline"></ion-icon> 
+            <strong>Listado</strong>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          ---------------
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="12" size-md>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="reader-outline"></ion-icon> 
+            <strong>Examen</strong>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          ---------------
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
+<div>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="calificar">
+        <ion-icon name="scan"></ion-icon>
+        <ion-label>Calificar</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="listado">
+        <ion-icon name="reader-outline"></ion-icon>
+        <ion-label>Listado</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="examen">
+        <ion-icon name="reader-outline"></ion-icon>
+        <ion-label>Examen</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</div>
+
+

@@ -1,0 +1,14 @@
+<ion-col size="12" *ngIf="preguntas">
+  <div *ngFor="let opcione of opciones">
+    <ion-item *ngIf="opcione.estado">
+      <ion-label>{{opcione.text}}</ion-label>
+      <ion-radio slot="start" value="{{opcione.text+'(V)'}}"
+      disabled="{{opcione.disabled}}"></ion-radio>
+    </ion-item>
+    <ion-item *ngIf="!opcione.estado">
+      <ion-label>{{opcione.text}}</ion-label>
+      <ion-radio slot="start" value="{{opcione.text+'(F)'}}"
+      disabled="{{opcione.disabled}}"></ion-radio>
+    </ion-item>
+  </div>
+</ion-col>

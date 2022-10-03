@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Temas</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="cerrar()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-row style="background: #e4e4e4;" *ngFor="let nuevos of noticias">
+        <ion-col size="12" size-md>
+            <ion-card>
+                <div style="margin: 20px   20px;">
+                    <ion-text class="ion-text-center"><h4><strong>
+                        {{nuevos.titulo}}
+                    </strong></h4></ion-text>
+                </div>
+                <div style="margin: 20px   20px;">
+                    <ion-text><h6>
+                        {{nuevos.contenido}}
+                    </h6></ion-text>
+                </div>
+                <ion-toolbar style="margin: 0px   10px;">
+                    <ion-buttons slot="end" style="margin: 0px   5px;">
+                        <ion-button (click)="nuevo = nuevos; enableNuevo = true" shape="round">
+                            <ion-icon slot="end" name="brush"></ion-icon>
+                        </ion-button>
+                        <ion-button (click)="deleteTemas(nuevos)" shape="round">
+                            <ion-icon slot="end" color="danger" name="trash-bin"></ion-icon>
+                        </ion-button>
+                    </ion-buttons>
+                </ion-toolbar>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-content>
+<div style="background: #c4c4c4;">
+    <ion-item>
+        <ion-buttons slot="end">
+            <ion-button color="danger" (click)="enableNuevo = false" shape="round">
+                <ion-icon name="close-circle"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="start">
+            <ion-button (click)="nueva(); enableNuevo = true" color="success" class="normal" shape="round">
+                Crear
+            </ion-button>
+        </ion-buttons>
+    </ion-item>
+    <div *ngIf="enableNuevo">
+        <ion-card>
+            <ion-item lines="none">
+                <ion-label position="floating">
+                    <strong>Titulo:</strong> 
+                </ion-label>
+                <ion-input [(ngModel)]="nuevo.titulo" type="text" imputmode="text">
+                </ion-input>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label position="floating">
+                    <strong>Contenido:</strong> 
+                </ion-label>
+              <ion-textarea [(ngModel)]="nuevo.contenido" enterkeyhint type="text" placeholder="Digite la pregunta">
+              </ion-textarea>
+            </ion-item>
+            <ion-button (click)="createTemas(); enableNuevo = false" color="primary" class="normal" shape="round">
+                <ion-icon name="save"></ion-icon>
+                Guardar
+            </ion-button>
+        </ion-card>
+    </div>
+</div>

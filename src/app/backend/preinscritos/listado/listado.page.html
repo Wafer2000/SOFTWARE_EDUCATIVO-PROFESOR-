@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>listado</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row style="background: #e4e4e4;" *ngFor="let nuevos of usuario">
+      <ion-col size="12" size-md>
+        <ion-card>
+          <div style="margin: 20px   20px;">
+            <ion-text>
+              <strong>
+                UID:
+              </strong>
+              <h6>
+                {{nuevos.uid}}
+              </h6>
+            </ion-text>
+          </div>
+          <div style="margin: 20px   20px;">
+            <ion-text>
+              <strong>
+                Nombres:
+              </strong>
+              <h6>
+                {{nuevos.nombres}}
+              </h6>
+            </ion-text>
+          </div>
+          <div style="margin: 20px   20px;">
+            <ion-text>
+              <strong>
+                Apellidos:
+              </strong>
+              <h6>
+                {{nuevos.apellidos}}
+              </h6>
+            </ion-text>
+          </div>
+          <div style="margin: 20px   20px;">
+            <ion-text>
+              <strong>
+                Numero de Identificacion:
+              </strong>
+              <h6>
+                {{nuevos.numidenti}}
+              </h6>
+            </ion-text>
+          </div>
+          <div style="margin: 20px   20px;">
+            <ion-text>
+              <strong>
+                Cuenta:
+              </strong>
+              <h6>
+                {{nuevos.email}}
+              </h6>
+            </ion-text>
+          </div>
+          <div style="margin: 20px   20px;">
+            <ion-text>
+              <strong>
+                Fecha de Nacimiento:
+              </strong>
+              <h6>
+                {{nuevos.fechanacimiento}}
+              </h6>
+            </ion-text>
+          </div>
+          <div *ngIf="nuevos.completado" style="margin: 20px   20px;">
+            <ion-text>
+              <strong>
+                ¿A completado y entregado el examen?:
+              </strong>
+              <h6>
+                Si
+              </h6>
+            </ion-text>
+          </div>
+          <div *ngIf="!nuevos.completado" style="margin: 20px   20px;">
+            <ion-text>
+              <strong>
+                ¿A completado y entregado el examen?:
+              </strong>
+              <h6>
+                No
+              </h6>
+            </ion-text>
+          </div>
+        </ion-card>
+      </ion-col>
+  </ion-row>
+</ion-content>

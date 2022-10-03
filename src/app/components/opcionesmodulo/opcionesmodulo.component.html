@@ -1,0 +1,24 @@
+<ion-col size="12" *ngIf="preguntas">
+  <div *ngFor="let opcione of opciones">
+    <ion-item *ngIf="opcione.estado==true">
+      <ion-label color="success">{{opcione.text}}</ion-label>
+      <ion-radio slot="start" value="{{opcione.text}}"
+      disabled="{{opcione.disabled}}"></ion-radio>
+      <ion-buttons style="margin: 0px   5px;">
+        <ion-button (click)="deleteOpcion(opcione)" shape="round">
+          <ion-icon slot="icon-only" color="danger" name="trash-bin"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+    <ion-item *ngIf="opcione.estado==false">
+      <ion-label color="danger">{{opcione.text}}</ion-label>
+      <ion-radio slot="start" value="{{opcione.text}}"
+      disabled="{{opcione.disabled}}"></ion-radio>
+      <ion-buttons style="margin: 0px   5px;">
+        <ion-button (click)="deleteOpcion(opcione)" shape="round">
+          <ion-icon slot="icon-only" color="danger" name="trash-bin"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </div>
+</ion-col>

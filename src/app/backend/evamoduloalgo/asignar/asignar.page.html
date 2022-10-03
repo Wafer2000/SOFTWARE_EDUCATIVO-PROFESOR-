@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>
+        Digite la pregunta(* Datos Obligatorios)
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Estudiante<ion-text color="danger">*</ion-text></ion-label>
+        <ion-select [(ngModel)]="algoritmo.estudiante" interface="popover">
+          <ion-select-option *ngFor="let estudiante of estudiantes" [value]="estudiante.uid">{{estudiante.nombres}} {{estudiante.apellidos}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Pregunta<ion-text color="danger">*</ion-text></ion-label>
+        <ion-textarea [(ngModel)]="algoritmo.pregunta" placeholder="Digite la pregunta">
+        </ion-textarea>
+      </ion-item>
+    </ion-card-content>
+    <ion-button (click)="Guardar(algoritmo)" color="primary" class="normal" shape="round">
+      <ion-icon name="save"></ion-icon>
+      GUARDAR
+    </ion-button>
+  </ion-card>
+</ion-content>
