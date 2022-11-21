@@ -12,7 +12,6 @@ import { FirestoreService } from './services/firestore.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  
   registro: Usuarios = {
     nombres: '',
     apellidos: '',
@@ -26,7 +25,7 @@ export class AppComponent {
     uid: '',
     numidenti: null,
     tiempo: new Date(),
-    tipo: 'Estudiante'
+    tipo: 'Estudiante',
   };
 
   newImage = '';
@@ -51,26 +50,26 @@ export class AppComponent {
     private platform: Platform,
     public firebaseauthService: FirebaseauthService,
     public firestoreService: FirestoreService,
-    public firestorageService: FirestorageService,
-    ) {
-      this.initializeApp();
-      this.firebaseauthService.stateAuth().subscribe( res => {
-        if (res !== null){
-          this.uid = res.uid;
-          this.getUserInfo(this.uid);
-        } else {
-          this.initRegistro();
-        }
-      });
-    }
+    public firestorageService: FirestorageService
+  ) {
+    this.initializeApp();
+    this.firebaseauthService.stateAuth().subscribe((res) => {
+      if (res !== null) {
+        this.uid = res.uid;
+        this.getUserInfo(this.uid);
+      } else {
+        this.initRegistro();
+      }
+    });
+  }
 
   initializeApp() {
-    this.platform.ready().then(() =>{
+    this.platform.ready().then(() => {
       this.getUid();
     });
   }
 
-  initRegistro(){
+  initRegistro() {
     this.uid = '';
     this.registro = {
       nombres: '',
@@ -85,43 +84,45 @@ export class AppComponent {
       uid: '',
       numidenti: null,
       tiempo: new Date(),
-      tipo: 'Estudiante'
+      tipo: 'Estudiante',
     };
     console.log(this.registro);
   }
 
-  getUserInfo(uid: string){
+  getUserInfo(uid: string) {
     console.log('getUserInfo');
     const path = 'Usuarios';
-    this.suscriberUserInfo = this.firestoreService.getDoc<Usuarios>(path, this.uid).subscribe(res =>{
-      this.registro = res;
-    });
+    this.suscriberUserInfo = this.firestoreService
+      .getDoc<Usuarios>(path, this.uid)
+      .subscribe((res) => {
+        this.registro = res;
+      });
   }
 
-  async getUid(){
+  async getUid() {
     const uid = await this.firebaseauthService.getUid();
     const path = 'Usuarios';
-    this.firebaseauthService.stateAuth().subscribe( res =>{
+    this.firebaseauthService.stateAuth().subscribe((res) => {
       if (res !== null) {
-        if (res.uid === 'xmPnhsDaBaad8oj6hMXrQaBgHxw1'){
+        if (res.uid === '6V40qYJifneL0Ot3DkaNC4Rde9J3') {
           this.admin = true;
           this.prof = false;
           this.estu = false;
           this.pre = false;
-          console.log('Bienvenido Administrador')
-        }else if (res.uid === 'M3TRg2mVzTOdXbpDhu8pf15HOpy1') {
+          console.log('Bienvenido Administrador');
+        } else if (res.uid === 'oqUm5Ldo7IOFjsfVpHo7cnM40363') {
           this.admin = false;
           this.prof = true;
           this.estu = false;
           this.pre = false;
-          console.log('Bienvenido Profesor')
-        }else {
+          console.log('Bienvenido Profesor');
+        } else {
           this.admin = false;
           this.prof = false;
           this.estu = true;
           this.pre = true;
         }
-      } else{
+      } else {
         this.admin = false;
         this.prof = false;
         this.estu = false;
@@ -129,5 +130,4 @@ export class AppComponent {
       }
     });
   }
-
 }
