@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
@@ -18,11 +19,11 @@ import { format, parseISO } from 'date-fns';
 export class LoginComponent implements OnInit {
 
   @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
-  
+
   dateValue = '';
-  
+
   usuarios: Usuarios[] = [];
-  
+
   registro: Usuarios = {
     nombres: '',
     apellidos: '',
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
   };
 
   newImage = '';
-  
+
   newFile: any;
 
   uid = '';
@@ -140,7 +141,7 @@ export class LoginComponent implements OnInit {
       if (this.newFile !== undefined){
         this.registro.foto = await this.firestorageService.uploadImage(this.newFile, path, name);
       }
-      this.interaction.presentLoading('Actualizando...')
+      this.interaction.presentLoading('Actualizando...');
       await this.firestoreService.createDoc(this.registro, path, id);
       console.log('Guardando con exito', await this.firebaseauthService.getUid());
       this.interaction.closeLoading();
@@ -149,11 +150,11 @@ export class LoginComponent implements OnInit {
   }
 
   async salir(){
-    this.interaction.presentLoading('Cerrando Sesion...')
+    this.interaction.presentLoading('Cerrando Sesion...');
     this.firebaseauthService.logout();
     this.suscriberUserInfo.unsubscribe();
     this.interaction.closeLoading();
-    this.interaction.presentToast('Cerró sesion con exito')
+    this.interaction.presentToast('Cerró sesion con exito');
   }
 
   getUserInfo(uid: string){
@@ -173,19 +174,19 @@ export class LoginComponent implements OnInit {
       this.interaction.presentToast('Digite el Correo Electronico');
     }else if(this.registro.password === ''){
       this.interaction.presentToast('Digite la Contraseña');
-    }else if(this.registro.password === '123456789' && this.registro.email === 'profesor@gmail.com'){
+    }else {
       const res = await this.firebaseauthService.login(credenciales.email, credenciales.password).then( res => {
-        this.interaction.presentLoading('Iniciando Sesion...')
+        this.interaction.presentLoading('Iniciando Sesion...');
         console.log('Ingresó con exito');
         this.interaction.closeLoading();
-        this.interaction.presentToast('Inició sesion con exito')
-      }).catch( error => { 
+        this.interaction.presentToast('Inició sesion con exito');
+      }).catch( error => {
         this.interaction.closeLoading();
-        this.interaction.presentToast('Digite la Cuenta y Contraseña de manera correcta')
+        this.interaction.presentToast('Digite la Cuenta y Contraseña de manera correcta');
         console.log('ERROR', error);
       });
     }
-    
+
   }
 
 }
